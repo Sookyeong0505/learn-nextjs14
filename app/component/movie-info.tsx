@@ -1,7 +1,7 @@
 import {API_URL} from "../API_URL";
 import styles from "../styles/movie-info.module.css";
 
-async function getMovies(id:string) {
+export async function getMovies(id:string) {
     console.log(`Fetching movie: ${Date.now()}`);
     await new Promise(resolve => setTimeout(resolve, 2000));
     const response = await fetch(`${API_URL}/${id}`);
