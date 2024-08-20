@@ -1,4 +1,5 @@
 import {API_URL} from "../API_URL";
+import styles from "../styles/movie-videos.module.css";
 
 async function getVideos(id:string) {
     console.log(`Fetching videos: ${Date.now()}`);
@@ -11,6 +12,16 @@ async function getVideos(id:string) {
 export default async function MovieVideos({id}:{id:string}) {
     const videos = await getVideos(id);
     return (
-    <h6>{JSON.stringify(videos)}</h6>
+    <div className={styles.container}>
+        {videos.map(video => (
+            <iframe
+                key={video.id}
+                width="560" height="315"
+                src={`https://www.youtube.com/embed/${video.key}`}
+                title={video.name}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen />
+        ))}
+    </div>
     );
 }
